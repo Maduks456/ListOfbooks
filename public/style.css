@@ -1,7 +1,10 @@
 .flex{
     place-self: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(6, 150px);
+    gap: 10px;
+    width: 950px;
+}
+.selected{
+    background-color: blue;
 }

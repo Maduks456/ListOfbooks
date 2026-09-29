@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->enum("type", ['withdrow', 'sent_back']);
-            $table->foreignId('book_id');
+            $table->enum("type", ['withdraw', 'sent_back']);
+            $table->foreignId('book_id')->constrained();
             $table->integer("amount");
             $table->timestamps();
         });
