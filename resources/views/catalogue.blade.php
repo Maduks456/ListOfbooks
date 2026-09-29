@@ -7,21 +7,39 @@
                 ? this.basket.filter(b => b.id !== book.id)
                 : [...this.basket, { ...book, amount: 1 }]
         }
-     }">
-         @foreach($books as $book)
-            <div
-            :class="{ 'selected': has({{ $book->id }}) }"
-            @click ='toggle({{Js::from(["id" => $book->id, "name" => $book->name]) }})'
-            >
-                
-                <div>
-                    <img src="{{ asset($book->cover) }}" width="150" height="150" alt="{{$book->name}}">
+    }"
+    x-init="$watch('basket', v => localStorage.setItem('basket', JSON.stringify(v)))">
+         <div class="grid" >
+            @foreach($books as $book)
+                <div
+                :class="{ 'selected': has({{ $book->id }}) }"
+                    @click="toggle({{ Js::from(['id' => $book->id, 'name' => $book->name]) }})">
+                    
+                    <div>
+                        <img src="{{ asset($book->cover) }}" width="150" height="150" alt="{{$book->name}}">
+                    </div>
+                    <div>
+                        {{$book->name}}
+                    </div>
                 </div>
-                <div>
-                    {{$book->name}}
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
+        <div>
+            <form method="POST" action="/transactions">
+                @csrf
+                <ul>
+                    <template x-for="b in basket">
+                        <li>
+                            <span x-text='b.name'></span>
+                            <span x-text="b.amount"></span>
+                            <input type="number" x-model="b.amount">
+                            <button type="button"  @click="toggle(b)">X</button>
+                            <input type="hidden" name="book_ids[]" :value="b.id">
+                        </li>
+                    </template>
+                </ul>
+                <button>test</button>
+            </form>
+        </div>
     </div>
-
 </x-layout>

@@ -1,4 +1,5 @@
-.flex{
+
+.grid{
     place-self: center;
     display: grid;
     grid-template-columns: repeat(6, 150px);
@@ -7,4 +8,9 @@
 }
 .selected{
     background-color: blue;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
