@@ -152,7 +152,16 @@ class DatabaseSeeder extends Seeder
  
             ['name' => 'The Friend I Wish For', 'code' => 'WISH2', 'cover' => 'storage/covers/WISH2-cover.jpg'],
         ];
- 
+        $allCodes=array_column($books, "code");
+        foreach($books as &$book){
+            $parent = preg_replace('/\d+$/', '', $book['code']);
+            if (in_array($parent, $allCodes) && $parent !== $book['code']) {
+                $book += ['parent_code' => $parent];
+            }else {
+                $book += ['parent_code' => null];
+            }
+        }
+        unset($book);
         foreach ($books as $book) {
             Book::updateOrCreate(['code' => $book['code']], $book);
         }
