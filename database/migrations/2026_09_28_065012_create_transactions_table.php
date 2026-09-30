@@ -16,6 +16,7 @@ return new class extends Migration
             $table->enum("type", ['withdraw', 'sent_back']);
             $table->foreignId('book_id')->constrained();
             $table->integer("amount");
+            $table->uuid('batch_id')->index();
             $table->timestamps();
         });
     }

@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
+    public function index(){
+        $transactions = Transaction::latest()
+            ->get()
+            ->groupBy(['type','batch_id']);
+        return view('transactions', compact("transactions"));
+    }
     public function store(Request $request){
+        $batch_id = Str::uuid();
         $validated = $request->validate([
             'type' => 'required|in:withdraw,sent_back',
             'book_ids' => 'required|array|min:1',
@@ -19,6 +27,7 @@ class TransactionController extends Controller
                 'book_id' =>$id,
                 'type' =>$validated['type'],
                 'amount' => $validated['amounts'][$id],
+                'batch_id' =>$batch_id,
             ]);
         }
         return back()->with('success', 'Saved!');

@@ -11,6 +11,7 @@
     x-init="$watch('basket', v => localStorage.setItem('basket', JSON.stringify(v)))">
     @if (session('success'))
         <h1>{{ session('success') }}</h1>
+        <script>localStorage.removeItem('basket')</script>
     @endif
          <div class="grid" >
             @foreach($books as $book)
@@ -28,6 +29,7 @@
             @endforeach
         </div>
         <div>
+            Basket
             <form method="POST" action="/transactions">
                 @csrf
                 <ul>
