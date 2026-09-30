@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
-    public function catalogue(){
+    public function index(){
         $books = Book::all();
         return view('catalogue', compact("books"));
     }

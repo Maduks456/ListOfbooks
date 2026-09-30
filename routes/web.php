@@ -2,5 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BaseController;
-Route::get('/', [BaseController::class, 'catalogue']);
+use App\Http\Controllers\TransactionController;
+Route::get('/', [BaseController::class, 'index']);
 Route::post('/transactions', [TransactionController::class, 'store']);

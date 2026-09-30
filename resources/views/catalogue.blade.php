@@ -9,6 +9,9 @@
         }
     }"
     x-init="$watch('basket', v => localStorage.setItem('basket', JSON.stringify(v)))">
+    @if (session('success'))
+        <h1>{{ session('success') }}</h1>
+    @endif
          <div class="grid" >
             @foreach($books as $book)
                 <div
@@ -32,13 +35,20 @@
                         <li>
                             <span x-text='b.name'></span>
                             <span x-text="b.amount"></span>
-                            <input type="number" x-model="b.amount">
+                            <input type="number" :name="'amounts[' + b.id + ']'" x-model="b.amount" min=1>
                             <button type="button"  @click="toggle(b)">X</button>
                             <input type="hidden" name="book_ids[]" :value="b.id">
+                            
                         </li>
                     </template>
                 </ul>
-                <button>test</button>
+                <label>
+                    <input type="radio" name="type" value="withdraw" checked> Withdraw
+                </label>
+                <label>
+                    <input type="radio" name="type" value="sent_back" > Sent Back
+                </label>
+                <button type="submit">test</button>
             </form>
         </div>
     </div>
