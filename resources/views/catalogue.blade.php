@@ -7,8 +7,10 @@
                 ? this.basket.filter(b => b.id !== book.id)
                 : [...this.basket, { ...book, amount: 1 }]
         },
-        openParent: null
+        openParent: null,
+        Basketopen: window.innerWidth > 768
     }"
+    @resize.window="Basketopen = window.innerWidth > 768"
     x-init="$watch('basket', v => localStorage.setItem('basket', JSON.stringify(v)))">
     @if (session('success'))
         <h1>{{ session('success') }}</h1>
@@ -50,15 +52,16 @@
             @endforeach
         </div>
         <div>
-            Basket
-            <form method="POST" action="/transactions">
+            <button type="button"  @click="Basketopen = !Basketopen">Basket</button>
+            <div x-show="Basketopen === true">
+                <form method="POST" action="/transactions">
                 @csrf
                 <ul>
                     <template x-for="b in basket">
                         <li>
                             <span x-text='b.name'></span>
                             <span x-text="b.amount"></span>
-                            <input type="number" :name="'amounts[' + b.id + ']'" x-model="b.amount" min=1>
+                            <input type="number" :name="'amounts[' + b.id + ']'" x-model.number="b.amount" min=1>
                             <button type="button"  @click="toggle(b)">X</button>
                             <input type="hidden" name="book_ids[]" :value="b.id">
                             
@@ -73,6 +76,7 @@
                 </label>
                 <button type="submit">test</button>
             </form>
+            </div>
         </div>
     </div>
 </x-layout>
