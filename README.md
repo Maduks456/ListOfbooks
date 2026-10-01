@@ -16,7 +16,7 @@
         Design
     </li>
     <li>
-        Perent books
+        Parent books
     </li>
 </ul>
 
@@ -31,9 +31,6 @@ There could be more but time will tell
     <li>
         Design
     </li>
-    <li>
-        Perent books
-    </li>
 </ul>
 
 ## Done functions:
@@ -47,5 +44,8 @@ There could be more but time will tell
     </li>
     <li>
         Transaction page
+    </li>
+    <li>
+        Parent books
     </li>
 </ul>
