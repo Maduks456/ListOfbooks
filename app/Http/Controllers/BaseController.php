@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class BaseController extends Controller
 {
     public function index(){
-        $books = Book::all();
-        return view('catalogue', compact("books"));
+        $parentbooks =Book::whereNull('parent_code')->with('children')->get();
+        return view('catalogue', compact("parentbooks"));
     }
 }

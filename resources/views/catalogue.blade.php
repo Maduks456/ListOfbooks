@@ -6,7 +6,8 @@
             this.basket = this.has(book.id)
                 ? this.basket.filter(b => b.id !== book.id)
                 : [...this.basket, { ...book, amount: 1 }]
-        }
+        },
+        openParent: null
     }"
     x-init="$watch('basket', v => localStorage.setItem('basket', JSON.stringify(v)))">
     @if (session('success'))
@@ -14,7 +15,7 @@
         <script>localStorage.removeItem('basket')</script>
     @endif
          <div class="grid" >
-            @foreach($books as $book)
+            @foreach($parentbooks as $book)
                 <div
                 :class="{ 'selected': has({{ $book->id }}) }"
                     @click="toggle({{ Js::from(['id' => $book->id, 'name' => $book->name]) }})">
@@ -25,6 +26,26 @@
                     <div>
                         {{$book->name}}
                     </div>
+                    @if($book->children->isNotEmpty())
+                        <div>
+                            <button type="button"  @click.stop="openParent= (openParent === {{$book->id}} ? null: {{$book->id}})">X</button>
+                            <div x-show="openParent === {{$book->id}}">
+                                <button type="button" @click.stop="openParent = null">Close</button>
+                                @foreach ($book->children as $child)
+                                    <div
+                                    :class="{ 'selected': has({{ $child->id }}) }"
+                                    @click.stop="toggle({{ Js::from(['id' => $child->id, 'name' => $child->name]) }})">
+                                        <div>
+                                            <img src="{{ asset($child->cover) }}" width="150" height="150" alt="{{$child->name}}">
+                                        </div>
+                                        <div>
+                                            {{$child->name}}
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                 </div>
             @endforeach
         </div>
