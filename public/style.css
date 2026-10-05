@@ -1,4 +1,155 @@
+:root {
+  --primary-bg-color: #F2F2ED;
+  --secondary-bg-color: #118AB2;
+  --first-acentent-color: #464B71;
+  --white: white;
+}
+/* * Reseting every  defult style*/
 
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+button, input, textarea, select {
+    font: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* * Navigation Style */
+
+.nav{
+    background-color: var(--secondary-bg-color);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 75px;
+    padding-right: 75px;
+    border: var(--first-acentent-color), 1px solid;
+}
+.nav_box{
+    font-size: 20px;
+    text-align: center;
+    align-content: center;
+    width: 130px;
+    height: 45%;
+}
+.nav_box:hover{
+ background-color: var(--first-acentent-color);
+ border-radius: 10px;
+ color: var(--primary-bg-color);
+}
+
+/* * Transaction page Style */
+
+.transactions{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+}
+.transactions_big_box{
+    padding: 30px;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.transactions_title{
+    text-align: center;
+    align-content: center;
+    width: 250px;
+    height: 80px;
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px;
+    border: var(--first-acentent-color), 1px solid;
+}
+.transactions_box{
+    width: 500px;
+    height: 500px;
+    background-color: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--first-acentent-color);
+    overflow: hidden; 
+    padding: 0;
+}
+.transactions_box_inner {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 25px; 
+    scrollbar-width: thin;
+    scrollbar-color: var(--first-acentent-color) var(--white);
+}
+.transaction_box{
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+    padding: 5px;
+    border: var(--first-acentent-color) 1px solid;
+    border-radius: 10px;
+    
+}
+
+.basket {
+    position: fixed;
+    top: 90px;
+    right: 0;
+    z-index: 10;
+}
+
+.basket_panel {
+    width: 350px;
+    height: 500px;
+    background-color: var(--first-acentent-color);
+    padding: 20px;
+    color: var(--white);
+}
+
+body{
+    background-color: var(--primary-bg-color);
+}
+.bold_big{
+    font-weight: bold;
+    font-size: 30px;
+}
+.selected{
+    background-color: blue;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .grid{
     place-self: center;
     display: grid;

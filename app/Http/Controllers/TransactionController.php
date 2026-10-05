@@ -9,6 +9,7 @@ class TransactionController extends Controller
 {
     public function index(){
         $transactions = Transaction::latest()
+        
             ->get()
             ->groupBy(['type','batch_id']);
         return view('transactions', compact("transactions"));
