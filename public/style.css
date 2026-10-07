@@ -139,12 +139,14 @@ a {
     flex-direction: column;
     justify-content: space-between;
     width: 350px;
+    max-width: calc(100vw - 20px);
     height: 500px;
+    max-height: 80vh;
     background-color: var(--secondary-bg-color);
     border: var(--first-acentent-color) 1px solid;
     overflow: hidden; 
     padding: 20px;   
-    border-radius: 10;
+    border-radius: 10px;
 }
 .basket_panel_inner {
     border: var(--first-acentent-color) 3px solid;
@@ -165,12 +167,12 @@ a {
     width: 100%;
     height: 100%;
     flex-direction: column;
-    
 }
 .basket_book{
     display: flex;
     flex-direction: column;
     width: 200px;
+    max-width: 100%;
     height: 90px;
     border: var(--first-acentent-color) 1px solid;
     padding: 5px;
@@ -246,7 +248,9 @@ a {
     grid-template-columns: repeat(5, 200px);
     gap: 15px;
     margin-top: 50px;
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 15px;
 }
 .book{
     position: relative;
@@ -260,7 +264,6 @@ a {
     display: flex;
     flex-direction: column;
 }
-
 .book_cover{
     place-self: center;
 }
@@ -377,7 +380,6 @@ body{
   cursor: pointer;
   transition: 0.3s;
 }
-
 .closebtn:hover {
   color: black;
 }
@@ -386,4 +388,42 @@ input{
 }
 ul{
     gap: 10px;
+}
+/*  */
+@media (max-width: 968px) {
+    .nav{
+        justify-content: space-around;
+        padding-right: 0px;
+    }
+    .transactions{
+        flex-direction: column;
+        align-content: normal;
+    }
+    .transactions_big_box{
+        place-self: center;
+    }
+    .book_grid{
+        place-content: center;
+         grid-template-columns: repeat(3, 130px);
+    }
+    .book{
+        position: relative;
+        border-radius: 10px;
+        width: 130px;
+        height: 260px;
+        padding: 10px;
+    }
+    .book_title{
+        font-size: 13px;
+    }
+    .book_button{
+        width: 70px;
+        height: 40px;
+    }
+    .children_book_menu{
+        grid-template-columns: repeat(2, 150px);
+    }
+    .selected{
+        padding: 8px;
+    }
 }

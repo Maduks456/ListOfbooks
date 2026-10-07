@@ -58,6 +58,8 @@
                 </form>
             </div>
         </div>
+
+        
          <div class="book_grid" >
             @foreach($parentbooks as $book)
                 <div class="book"
